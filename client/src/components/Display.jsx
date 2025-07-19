@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 
 const Display = () => {
@@ -11,14 +12,9 @@ const Display = () => {
     }
     useEffect(() => {
         getData()
-
-
     }, [])
 
-
     return (
-
-
         <>
             <div className="container">
                 <h2 className="mb-4">User Data Display</h2>
@@ -34,9 +30,9 @@ const Display = () => {
                     <tbody>
                         {
                             user.map(
-                                (user ,i) => {
+                                (user, i) => {
                                     <tr>
-                                        <th scope="row">{i+1}</th>
+                                        <th scope="row">{i + 1}</th>
                                         <td>{user.uname}</td>
                                         <td>{user.email}</td>
                                         <td>{user.password}</td>
@@ -48,10 +44,10 @@ const Display = () => {
                     </tbody>
                 </table>
             </div>
-
-
+            <div className="d-flex justify-content-center">
+                <Link to="/"><button className="btn btn-outline-dark">Back</button></Link>
+            </div>
         </>
     )
 }
-
 export default Display
