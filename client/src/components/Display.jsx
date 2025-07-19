@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 
 const Display = () => {
     const [user, setUser] = useState([]);
+
     const getData = async () => {
         const res = await axios.get('http://127.0.0.1:4000/users')
         setUser(res.data)
@@ -11,14 +12,10 @@ const Display = () => {
     }
     useEffect(() => {
         getData()
-
-
     }, [])
 
 
     return (
-
-
         <>
             <div className="container">
                 <h2 className="mb-4">User Data Display</h2>
@@ -34,22 +31,17 @@ const Display = () => {
                     <tbody>
                         {
                             user.map(
-                                (user ,i) => {
-                                    <tr>
-                                        <th scope="row">{i+1}</th>
+                                (user, i) => (
+                                    <tr key={user._id}>
+                                        <th scope="row">{i + 1}</th>
                                         <td>{user.uname}</td>
                                         <td>{user.email}</td>
                                         <td>{user.password}</td>
                                     </tr>
-                                }
-                            )
-                        }
-
+                                ))}
                     </tbody>
                 </table>
             </div>
-
-
         </>
     )
 }

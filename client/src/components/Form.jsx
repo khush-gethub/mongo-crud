@@ -28,9 +28,9 @@ const Form = () => {
                 setTimeout(() => {
                     setMessage('');
                 }, 0);
-            }, 1500);
+            }, 1000);
         } catch (error) {
-            // console.error(error);
+            console.error(error);
             setMessage(error.response?.data?.error || 'An error occurred');
         } finally {
             setLoading(false);
