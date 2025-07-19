@@ -19,7 +19,7 @@ const Form = () => {
         setMessage('');
 
         try {
-            const postData = await axios.post('http://localhost:4000/users', data);
+            const postData = await axios.post('http://127.0.0.1:4000/users', data);
             console.log(postData.data);
             setData({ uname: '', email: '', password: '' });
             setMessage('User data submitted successfully!');
