@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Form = () => {
     const [data, setData] = useState({ uname: '', email: '', password: '' });
@@ -29,7 +30,7 @@ const Form = () => {
                 }, 0);
             }, 1500);
         } catch (error) {
-            console.error(error);
+            // console.error(error);
             setMessage(error.response?.data?.error || 'An error occurred');
         } finally {
             setLoading(false);
@@ -95,7 +96,9 @@ const Form = () => {
                 >
                     {loading ? 'Submitting...' : 'Submit'}
                 </button>
-                <button type="button" className="btn btn-secondary">View Data</button>
+                <Link  to="/display">
+                    <button type="button" className="btn btn-secondary">View Data</button>
+                </Link>
             </form>
         </div>
     );

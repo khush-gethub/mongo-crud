@@ -15,4 +15,11 @@ app.post('/users', async (req,res) => {
     res.status(201).json(newUser);
 })
 
+app.get('/users',  (req, res)=>{
+    User.find()
+    .then(use => res.json(use))
+    .catch(err => console.log("err", err))
+
+} )
+
 app.listen(4000);
