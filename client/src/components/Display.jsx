@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Display = () => {
     const [user, setUser] = useState([]);
+
     const getData = async () => {
         const res = await axios.get('http://127.0.0.1:4000/users')
         setUser(res.data)
@@ -13,6 +14,12 @@ const Display = () => {
     useEffect(() => {
         getData()
     }, [])
+
+
+    const handleDelete = async (id) => {
+        await axios.delete(`http://127.0.0.1:4000/users/${id}`)
+        setUser(user.filter(userss => userss._id !== id))
+    }
 
     return (
         <>
@@ -25,22 +32,22 @@ const Display = () => {
                             <th scope="col">First</th>
                             <th scope="col">Last</th>
                             <th scope="col">Handle</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            user.map(
-                                (user, i) => {
-                                    <tr>
-                                        <th scope="row">{i + 1}</th>
-                                        <td>{user.uname}</td>
-                                        <td>{user.email}</td>
-                                        <td>{user.password}</td>
-                                    </tr>
-                                }
-                            )
-                        }
-
+                            user.map((user, i) => (
+                                <tr key={user._id}>
+                                    <th scope="row">{i + 1}</th>
+                                    <td>{user.uname}</td>
+                                    <td>{user.email}</td>
+                                    <td>{user.password}</td>
+                                    <td>
+                                        <button className="btn btn-danger" onClick={() => { handleDelete(user._id) }}>Delete</button>
+                                    </td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
             </div>
